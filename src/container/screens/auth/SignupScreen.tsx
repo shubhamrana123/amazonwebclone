@@ -1,5 +1,20 @@
-import { Button, Divider, Paper, Stack, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Divider,
+  Paper,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useState } from "react";
+import { Validate_Email } from "../../config/helper-methods";
 const SignupScreen = () => {
+  const [email,setEmail] = useState("")
+  const [emailValidationMessage,setEmailValidationMessage] = useState<any>("")
+  const handleEmail = (event:any) =>{
+    setEmail(event?.target?.value)
+    setEmailValidationMessage(Validate_Email(event?.target?.value))
+  }
   return (
     <Stack
       sx={{
@@ -9,7 +24,9 @@ const SignupScreen = () => {
         alignItems: "center",
         justifyContent: "space-evenly",
       }}
-    > <Typography>Amazon</Typography>
+    >
+      {" "}
+      <Typography>Amazon</Typography>
       <Paper
         sx={{
           width: "35vw",
@@ -19,14 +36,17 @@ const SignupScreen = () => {
           <Typography variant="h5">Create Account</Typography>
           <Stack rowGap={"20px"}>
             <TextField required size="small" label="Your name" />
-            <TextField required size="small" label="Mobile number or email" />
+            <TextField required size="small" label="Mobile number or email"  
+            error={emailValidationMessage===null}
+            helperText={emailValidationMessage===null?"Please enter valid email address":""}
+            onChange= {(event)=>handleEmail(event)}/>
             <TextField required size="small" label="Password" />
             <TextField required size="small" label="Re-enter password" />
             <Button variant="contained" sx={{ borderRadius: "8px" }}>
               Continue
             </Button>
           </Stack>
-          <Stack flexDirection={"row"} columnGap='5px'>
+          <Stack flexDirection={"row"} columnGap="5px">
             <Typography
               sx={{
                 textTransform: "none",
@@ -72,39 +92,54 @@ const SignupScreen = () => {
               Privacy Notice.
             </Typography>
           </Stack>
-          <Divider/>
+          <Divider />
           <Paper>
-            <Typography    sx={{
+            <Typography
+              sx={{
                 textTransform: "none",
-      
+
                 fontFamily: "Inter",
-                fontWeight: 'bold',
+                fontWeight: "bold",
                 fontSize: "12px",
-              }}>Buying for work?</Typography>
-              <Typography sx={{
+              }}
+            >
+              Buying for work?
+            </Typography>
+            <Typography
+              sx={{
                 textTransform: "none",
-      color:'blue',
+                color: "blue",
                 fontFamily: "Inter",
-                fontWeight: '400',
+                fontWeight: "400",
                 fontSize: "14px",
-              }}>Create a free business account</Typography>
+              }}
+            >
+              Create a free business account
+            </Typography>
           </Paper>
-          <Stack flexDirection={'row'} columnGap={'5px'}
-          >
-            <Typography   sx={{
+          <Stack flexDirection={"row"} columnGap={"5px"}>
+            <Typography
+              sx={{
                 textTransform: "none",
-      
+
                 fontFamily: "Inter",
-                fontWeight: '400',
+                fontWeight: "400",
                 fontSize: "12px",
-              }}>Already have an account? </Typography>
-            <Typography   sx={{
+              }}
+            >
+              Already have an account?{" "}
+            </Typography>
+            <Typography
+              sx={{
                 textTransform: "none",
-      color:'blue',
+                color: "blue",
                 fontFamily: "Inter",
-                fontWeight: '400',
+                fontWeight: "400",
                 fontSize: "12px",
-              }}>Sign in</Typography>
+              }}
+            >
+              Sign in
+            </Typography>
           </Stack>
         </Stack>
       </Paper>
