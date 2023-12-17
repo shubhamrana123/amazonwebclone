@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Routes ,Route} from 'react-router-dom';
 import InnerApp from './InnerApp';
 import { Alert, Box, Snackbar } from "@mui/material";
 import NavigationBar from './container/component/navigation-bar';
+import SubNavbar from './container/component/subnavbar';
 function App() {
   const RenderRoutes = () =>{
     return (
@@ -19,6 +20,7 @@ function App() {
   return (
 <>
 <NavigationBar/>
+<SubNavbar/>
 <Box>
   <Router>
     {RenderRoutes()}

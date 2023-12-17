@@ -1,8 +1,9 @@
 import React from 'react'
+import { OfferCard } from '../../component/offer-card'
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+   <OfferCard/>
   )
 }
 

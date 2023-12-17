@@ -8,7 +8,7 @@ const InnerApp = () => {
   return (
 <>
 <Routes>
-    {!userInfo?(
+    {userInfo?(
         <>
           {authLayoutRoutes?.map((route:any)=>(
               <Route path={route.path} element={route?.navigatePath?(<Navigate to={route.navigatePath}/>):(<route.component/>)}/>
